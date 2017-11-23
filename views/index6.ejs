@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .notontime {
+            color:red;
+        }
+
+        .ontime {
+            color: green;
+        }
+
+        .normal {
+            color: black;
+        }
+
+        .reached {
+            background-color: blue;
+        }
+
+        .notreached {
+            background-color: white;
+        }
+        
+    </style>
+     <script>
+        function getServiceDetails(index) {
+            for( var i=0; i<24; i++) {
+                index = index.replace("/", "@");          
+            }   
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("sds").innerHTML = xhttp.responseText;
+                }
+            };
+            document.getElementById("sds").innerHTML = "";
+            var tid = "/6a/" + index;
+            xhttp.open("post", tid, true);
+            xhttp.send();
+        }
+         
+        function reloadPage() { window.location.reload(); }
+
+        function initAll() { setTimeout('reloadPage()', 120000); getServiceDetails(trainids[0]); }
+    </script>
+</head>
+
+<body onLoad='initAll()'>
+    <script>
+    var trainids = [
+    <% for(var i=0; i<trains.length; i++) { %>
+        "<%= trains[i].id %>",
+    <% }; %>
+    ]; 
+    </script>
+
+    <hr><b>
+    <%= from %> to <%= to %> 
+    </b><br>
+    <table> 
+        <% for( var i=0; i<trains.length; i++) { %>
+        <tr onclick="getServiceDetails(trainids[<%= i %>])">
+        <td> <%= trains[i].std %> </td>
+        <td>(</td>
+        <td align='center' class='<%= trains[i].etd =="On time" ? "ontime" : "notontime" %>'><%= trains[i].etd %></td>
+        <td>)</td>        
+        <td>P: <%= trains[i].pt %></td>
+        <td><%= trains[i].toloc %> </td>
+         <td>from </td>
+        <td><%= trains[i].origin %> </td>
+        <% }; %>
+        </tr>
+    </table><hr>
+    <div name="serviceDetails" id="sds"> </div>
+
+    <br><font size='2'><%= luat %>  (GMT)</font>
+</body>

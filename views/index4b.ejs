@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+     <script>
+        function reloadPage() { window.location.reload(); }
+        function initAll() { setTimeout('reloadPage()', 120000); }
+    </script>
+</head>
+
+<body onLoad='initAll()'>
+    <hr><b>
+    <%= from %> to <%= to %> 
+    </b><br>
+    <table> 
+        <% trains.forEach(function(train) { %>
+        <tr>
+        <td> <%= train.std %> </td><td> ( <%= train.etd %> ) </td><td>P: <%= train.pt %></td><td><%= train.toloc %> </td>
+        <% }); %>
+        </tr>
+    </table><hr>
+
+    <table> 
+        <% for( var i=0; i<sd0.length; i++) { %>
+        <% } %>
+        <% sd0.forEach(function(cp) { %>
+        <tr>
+        <td> <%= cp.std %> </td><td> ( <%= cp.atd %> ) </td><td><%= cp.loc %> </td>
+        <% }); %>
+        </tr>
+    </table><hr>
+
+    <br><font size='2'><%= luat %>  (GMT)</font>
+</body>

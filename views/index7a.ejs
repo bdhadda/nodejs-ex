@@ -1,0 +1,16 @@
+    Arrivals at <%= from %>
+    </b><br>
+    <table> 
+        <% for( var i=0; i<trains.length; i++) { %>
+        <tr>
+        <td> <%= trains[i].sta %> </td>
+        <td>(</td>
+        <td align='center' class='<%= trains[i].eta =="On time" ? "ontime" : "notontime" %>'><%= trains[i].eta %></td>
+        <td>)</td>        
+        <td>P: <%= trains[i].pt %></td>
+        <td><%= trains[i].origin %></td>
+        <td> to </td>
+        <td> <%= trains[i].toloc %> </td>
+        <% }; %>
+        </tr>
+    </table>

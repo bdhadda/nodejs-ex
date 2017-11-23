@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css"/> 
+    <script type="text/javascript" src="index7.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">       
+</head>
+
+<body onLoad='initAll()'>
+    <script>
+    var tids1 = [ <% for(var i=0; i<trains1.length; i++) { %>"<%= trains1[i].id %>", <% }; %> ]; 
+    var tids2 = [ <% for(var i=0; i<trains2.length; i++) { %>"<%= trains2[i].id %>", <% }; %> ]; 
+    </script>
+
+    <hr><b>
+    <%= from1 %> to <%= to1 %> 
+    </b><br>
+    <table> 
+        <% for( var i=0; i<trains1.length; i++) { %>
+        <tr onclick="getServiceDetails(tids1[<%= i %>])">
+        <td> <%= trains1[i].std %> </td>
+        <td>(</td>
+        <td align='center' class='<%= trains1[i].etd =="On time" ? "ontime" : "notontime" %>'><%= trains1[i].etd %></td>
+        <td>)</td>        
+        <td>P: <%= trains1[i].pt %></td>
+        <td><%= trains1[i].toloc %> </td>
+        <% }; %>
+        </tr>
+    </table>
+
+
+    <hr><b>
+    <%= from2 %> to <%= to2 %> 
+    </b><br>
+    <table> 
+        <% for( var i=0; i<trains2.length; i++) { %>
+        <tr onclick="getServiceDetails(tids2[<%= i %>])">
+        <td> <%= trains2[i].std %> </td>
+        <td>(</td>
+        <td align='center' class='<%= trains2[i].etd =="On time" ? "ontime" : "notontime" %>'><%= trains2[i].etd %></td>
+        <td>)</td>        
+        <td>P: <%= trains2[i].pt %></td>
+        <td><%= trains2[i].toloc %> </td>
+        <% }; %>
+        </tr>
+    </table><hr>
+
+    <div name="serviceDetails" id="sds"> </div>
+
+    <footer>
+        <% include ./partials/footer.ejs %>
+    </footer>
+</body>

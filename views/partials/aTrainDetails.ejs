@@ -1,0 +1,14 @@
+<% const dash = "-- : --"; %>
+<table>
+    <% for( var i=0; i<sd.length; i++){ %>
+        <tr  onclick="getArrivals('<%= sd[i].crs %>')">
+        <td><%= sd[i].std %></td>
+        <td class=<%= sd[i].atd == dash ? "notreached" : "reached"%>></td>
+        <td>(</td>
+        <td align='center' class= <%= sd[i].atd == "On time" ? "ontime" : ( sd[i].atd == dash ? "normal" : "notontime")%> >
+        <%= sd[i].atd %></td>
+        <td>)</td>
+        <td><%= sd[i].loc %> </td>
+        </tr>
+    <% } %>
+</table>

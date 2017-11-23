@@ -1,0 +1,20 @@
+        .notontime {
+            color:red;
+        }
+
+        .ontime {
+            color: green;
+        }
+
+        .normal {
+            color: black;
+        }
+
+        .reached {
+            background-color: blue;
+        }
+
+        .notreached {
+            background-color: white;
+        }
+  
