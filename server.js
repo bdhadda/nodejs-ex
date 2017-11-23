@@ -422,7 +422,7 @@ app.get('/2', function (req, res) {
             res.end('Not found');
         } else {
             log("Read file");
-            let ext = path.extname(url).slice(1);
+            var ext = path.extname(url).slice(1);
             //log(ext);
             res.setHeader('Content-Type', 'text/html');
             if (ext === 'html') {
